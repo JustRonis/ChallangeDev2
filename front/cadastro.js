@@ -16,11 +16,11 @@ contaCorrenteCampos.style.display = "block";
 });
 
 $(document).ready(function() {
-    $('#nome').mask('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', {
-      translation: {
-        'A': { pattern: /[A-Za-zÀ-ú]/ }
-      }
-    });
+    // $('#nome').mask('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', {
+    //   translation: {
+    //     'A': { pattern: /[A-Za-zÀ-ú]/ }
+    //   }
+    // });
   
     $('#telefone').mask('(00) 00000-0000');
   
