@@ -4,7 +4,7 @@ const contaCorrenteCampos = document.getElementById("conta-corrente-campos");
 const pixRadio = document.getElementById("pix");
 const contaCorrenteRadio = document.getElementById("contaCorrente");
 const form = document.querySelector('form');
-const formData = new FormData(form);
+//const formData = new FormData(form);
 
 
 pixRadio.addEventListener("click", function() {
@@ -30,7 +30,19 @@ $(document).ready(function() {
   });
 
 
-  fetch('/api/cliente', {
+  var formData = {
+    'nome': $('#nome').val(),
+    'telefone': $('#telefone').val(),
+    'cpf': $('#cpf').val(),
+    'idPeido': $('#idPedido').val(),
+    'chavePix': $('#chavePix').val(),
+    'numeroConta': $('#conta').val(),
+    'agencia': $('#agencia').val(),
+    'banco': $('#banco').val()
+  }
+
+
+  fetch('127.0.0.1/api/cliente', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
