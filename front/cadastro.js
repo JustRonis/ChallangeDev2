@@ -42,7 +42,7 @@ $(document).ready(function() {
   }
 
 
-  fetch('127.0.0.1/api/cliente', {
+  fetch('http://127.0.0.1:8080/api/cliente', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
