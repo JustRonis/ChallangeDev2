@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Desafio2.model.entities.Cliente;
 import com.example.Desafio2.model.repositories.ClienteRepository;
+import com.example.Desafio2.model.repositories.Encrypt;
 
 
 @RestController
@@ -20,6 +21,9 @@ public class ClienteController {
 
   @PostMapping("/api/cliente")
   public ResponseEntity<Cliente> criarCliente(@RequestBody Cliente cliente){
+
+    Encrypt encrypt;
+
     String nome = cliente.getNome();
     String telefone = cliente.getTelefone();
     String cpf = cliente.getCpf();
@@ -30,7 +34,11 @@ public class ClienteController {
     String banco = cliente.getBanco() != null ? cliente.getBanco() : null;
 
     Cliente novoCliente = new Cliente(nome, telefone, cpf, idPedido, chavePix, numeroConta, agencia, banco);
-    Cliente salvarCliente = clienteRepository.save(novoCliente);
+
+    encrypt = new Encrypt(novoCliente);
+    encrypt.converterCliente(true);
+
+    Cliente salvarCliente = clienteRepository.save(encrypt.getCliente());
     return ResponseEntity.ok(salvarCliente);
   }
 
