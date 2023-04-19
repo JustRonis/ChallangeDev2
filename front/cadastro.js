@@ -30,7 +30,7 @@ $(document).ready(function() {
   });
 
 
-  fetch('/api/endpoint', {
+  fetch('/api/cliente', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
