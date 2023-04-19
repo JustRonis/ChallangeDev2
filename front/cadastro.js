@@ -4,8 +4,6 @@ const contaCorrenteCampos = document.getElementById("conta-corrente-campos");
 const pixRadio = document.getElementById("pix");
 const contaCorrenteRadio = document.getElementById("contaCorrente");
 const form = document.querySelector('form');
-//const formData = new FormData(form);
-
 
 pixRadio.addEventListener("click", function() {
 pixCampos.style.display = "block";
@@ -27,10 +25,14 @@ $(document).ready(function() {
     $('#telefone').mask('(00) 00000-0000');
   
     $('#cpf').mask('000.000.000-00', { reverse: true });
-  });
+});
 
+var formData = {};
+const formulario = document.getElementById("formulario");
 
-  var formData = {
+formulario.addEventListener('submit', function(event) {
+  event.preventDefault();
+  formData = {
     'nome': $('#nome').val(),
     'telefone': $('#telefone').val(),
     'cpf': $('#cpf').val(),
@@ -41,17 +43,21 @@ $(document).ready(function() {
     'banco': $('#banco').val()
   }
 
+fetch('http://127.0.0.1:8080/api/cliente', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(formData)
+})
+.then(response => {
+  console.log("sucesso! enviado para o back");
+})
+.catch(error => {
+  console.log("Erro ao enviar para o back end");
+});
 
-  fetch('http://127.0.0.1:8080/api/cliente', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(formData)
-  })
-  .then(response => {
-    console.log("sucesso! enviado para o back")
-  })
-  .catch(error => {
-    console.log("Erro ao enviar para o back end")
-  });
+
+});
+
+
