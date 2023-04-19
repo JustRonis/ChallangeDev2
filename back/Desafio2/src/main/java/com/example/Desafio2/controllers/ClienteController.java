@@ -1,7 +1,10 @@
 package com.example.Desafio2.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,11 +33,13 @@ public class ClienteController {
     Cliente salvarCliente = clienteRepository.save(novoCliente);
     return ResponseEntity.ok(salvarCliente);
   }
+
+  @GetMapping("/api/cliente")
+    public ResponseEntity<List<Cliente>> getAll() {
+    List<Cliente> clientes = clienteRepository.findAll();
+    return ResponseEntity.ok(clientes);
+}
 }
 
-// @PostMapping("/api/endpoint")
-// public ResponseEntity<String> processForm(@RequestBody Cliente formData) {
-  
-//     // fazer algo com os dados recebidos
-//   return ResponseEntity.ok("Dados recebidos com sucesso!");
+
 
