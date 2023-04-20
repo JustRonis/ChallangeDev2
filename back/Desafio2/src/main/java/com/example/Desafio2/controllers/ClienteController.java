@@ -1,5 +1,7 @@
 package com.example.Desafio2.controllers;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +15,13 @@ import com.example.Desafio2.model.entities.Cliente;
 import com.example.Desafio2.model.repositories.ClienteRepository;
 import com.example.Desafio2.model.repositories.Encrypt;
 
-
 @RestController
 public class ClienteController {
   @Autowired
   private ClienteRepository clienteRepository;
 
   @PostMapping("/api/cliente")
-  public ResponseEntity<Cliente> criarCliente(@RequestBody Cliente cliente){
+  public ResponseEntity<Cliente> criarCliente(@RequestBody Cliente cliente) throws InvalidAlgorithmParameterException{
 
     Encrypt encrypt;
 
@@ -43,9 +44,19 @@ public class ClienteController {
   }
 
   @GetMapping("/api/cliente")
-    public ResponseEntity<List<Cliente>> getAll() {
-    List<Cliente> clientes = clienteRepository.findAll();
-    return ResponseEntity.ok(clientes);
+    public ResponseEntity<ArrayList<Cliente>> getAll() throws InvalidAlgorithmParameterException {
+    ArrayList<Cliente> clientes = (ArrayList<Cliente>) clienteRepository.findAll();
+    ArrayList clientesDescritografado = new ArrayList();
+    Encrypt encrypt;        
+
+    for (Cliente  cliente: clientes) {
+      encrypt = new Encrypt(cliente);
+      encrypt.converterCliente(false);
+      clientesDescritografado.add(cliente);      
+    }
+    
+    
+    return ResponseEntity.ok(clientesDescritografado);
 }
 }
 
