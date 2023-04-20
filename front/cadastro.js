@@ -36,7 +36,7 @@ formulario.addEventListener('submit', function(event) {
     'nome': $('#nome').val(),
     'telefone': $('#telefone').val(),
     'cpf': $('#cpf').val(),
-    'idPeido': $('#idPedido').val(),
+    'idPedido': $('#idPedido').val(),
     'chavePix': $('#chavePix').val(),
     'numeroConta': $('#conta').val(),
     'agencia': $('#agencia').val(),
