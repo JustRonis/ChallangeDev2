@@ -14,8 +14,9 @@ public class Cliente {
     private String numeroConta;
     private String agencia;
     private String banco;
+    private boolean reembolsado;
 
-    public Cliente(String nome, String telefone, String cpf, int idPedido, String chavePix, String numeroConta, String agencia, String banco) {
+    public Cliente(String nome, String telefone, String cpf, int idPedido, String chavePix, String numeroConta, String agencia, String banco, boolean reembolsado) {
         this.nome = nome;
         this.telefone = telefone;
         this.cpf = cpf;
@@ -24,6 +25,7 @@ public class Cliente {
         this.numeroConta = numeroConta;
         this.agencia = agencia;
         this.banco = banco;
+        this.reembolsado = reembolsado;
     }
 
 
@@ -89,5 +91,14 @@ public class Cliente {
 
     public void setBanco(String banco) {
         this.banco = banco;
+    }
+
+
+    public boolean getReembolsado() {
+        return this.reembolsado;
+    }
+
+    public void setReembolsado(boolean reembolsado) {
+        this.reembolsado = reembolsado;
     }
 }

@@ -33,8 +33,9 @@ public class ClienteController {
     String numeroConta = cliente.getNumeroConta() != null ? cliente.getNumeroConta() : null;
     String agencia = cliente.getAgencia() != null ? cliente.getAgencia() : null;
     String banco = cliente.getBanco() != null ? cliente.getBanco() : null;
+    boolean reembolsado = false;
 
-    Cliente novoCliente = new Cliente(nome, telefone, cpf, idPedido, chavePix, numeroConta, agencia, banco);
+    Cliente novoCliente = new Cliente(nome, telefone, cpf, idPedido, chavePix, numeroConta, agencia, banco, reembolsado);
 
     encrypt = new Encrypt(novoCliente);
     encrypt.converterCliente(true);
