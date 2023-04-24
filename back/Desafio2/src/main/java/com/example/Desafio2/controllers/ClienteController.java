@@ -7,13 +7,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Desafio2.model.entities.Cliente;
 import com.example.Desafio2.model.repositories.ClienteRepository;
 import com.example.Desafio2.model.repositories.Encrypt;
+import com.example.Desafio2.service.ClienteService;
 
 @RestController
 public class ClienteController {
@@ -54,11 +58,17 @@ public class ClienteController {
       encrypt = new Encrypt(cliente);
       encrypt.converterCliente(false);
       clientesDescritografado.add(cliente);      
-    }
-    
-    
+    } 
     return ResponseEntity.ok(clientesDescritografado);
-}
+  }
+
+  @Autowired
+  private ClienteService clienteService;
+  @PutMapping("/api/cliente/{idPedido}")
+  public ResponseEntity<?> atualizarReembolsado(@PathVariable("idPedido") String idPedido, @RequestParam("reembolsado") boolean reembolsado) {
+    clienteService.atualizarReembolsado(idPedido, reembolsado);
+    return ResponseEntity.ok().build();
+  }
 }
 
 
