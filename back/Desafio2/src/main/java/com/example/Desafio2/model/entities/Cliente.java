@@ -1,5 +1,6 @@
 package com.example.Desafio2.model.entities;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -15,6 +16,7 @@ public class Cliente {
     private String agencia;
     private String banco;
     private boolean reembolsado;
+    private String _id;
 
     public Cliente(String nome, String telefone, String cpf, int idPedido, String chavePix, String numeroConta, String agencia, String banco, boolean reembolsado) {
         this.nome = nome;
@@ -26,8 +28,8 @@ public class Cliente {
         this.agencia = agencia;
         this.banco = banco;
         this.reembolsado = reembolsado;
+        this._id = ObjectId.get().toString();
     }
-
 
     public String getNome() {
         return this.nome;
