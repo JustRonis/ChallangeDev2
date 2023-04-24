@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    ports:
+      - "9090:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://db:27017/test
+    networks:
+      - backend
+
+  db:
+    image: mongo
+    volumes:
+      - mongodbdata:/data/db
+    ports:
+      - "9091:27017"
+    networks:
+      - backend
+
+volumes:
+  mongodbdata:
+
+networks:
+  backend:
