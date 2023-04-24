@@ -33,6 +33,7 @@ const updateReembolsado = (idPedido, reembolsado) => {
             </h2>
             <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#accordionExample">
               <div class="accordion-body">
+                <p>Nome: ${cliente.nome}</p>
                 <p>Telefone: ${cliente.telefone}</p>
                 <p>CPF: ${cliente.cpf}</p>
                 <p>ID do Pedido: ${cliente.idPedido}
